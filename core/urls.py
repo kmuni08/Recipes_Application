@@ -20,7 +20,8 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('recipe.urls', namespace='recipe'))
+    path('', include('recipe.urls', namespace='recipe')),
+    path('wishlist/', include('wishlist.urls', namespace='wishlist')),
 ]
 
 if settings.DEBUG:

@@ -14,33 +14,32 @@
                 <h1 class="mb-0 h4">{{ recipe.title }}</h1>
                 <p><span class="lead">{{ recipe.author }}</span> (Author)</p>
                 <p>{{ recipe.description|slice:":355" }}...</p>
-                <div class="border">
-                    <div class="col border-bottom">
-                        <div class="row p-3">
-                            <!-- <div class="col-6">Hardback</div> -->
-                            <!-- <div class="col-6 text-end"><span class="h4 fw-bold">£{{ product.price }}</span></div> -->
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="row p-3">
-                            <div class="col-6">
-                                <label for="select">Qty</label>
-                                <select id="select">
-                                    <option value="">1</option>
-                                    <option value="">2</option>
-                                    <option value="">3</option>
-                                    <option value="">4</option>
-                                </select>
-
-                            </div>
-                            <div class="col-6 text-end"><button type="button" class="btn btn-secondary btn-sm">Add to
-                                    basket</button></div>
-                        </div>
-                    </div>
+                <div class="col-6 text-end">
+                    <button type="button" id = "add-button" value = "{{recipe.id}}" class="btn btn-secondary btn-sm">
+                    Add to Wishlist</button>
                 </div>
             </div>
         </div>
     </main>
-
 </div>
+
+<script>
+    $(document).on('click', '#add-button', function(e) {
+        e.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: '{% url "wishlist:wishlist_add" %}',
+            data: {
+                recipeId: $('#add-button').val(),
+                csrfmiddlewaretoken: "{{ csrf_token }}",
+                action: 'POST'
+            },
+            success: function(json) {
+                
+            },
+            error: function(xhr, errmsg, err) {}
+        });
+    })
+</script>
+
 {% endblock %}
