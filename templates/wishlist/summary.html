@@ -6,7 +6,11 @@
 
 <main class="pt-5">
   <div class="container">
-    <h1 class="h5">Start Cooking one of these recipes!</h1>
+    {% if wishlist%}
+      <h1 class="h5"> Start Cooking one of these recipes! </h1>
+    {% else %}
+      <h1 class="h5">Pick a recipe now to add to wishlist</h1>
+    {% endif %}
     {% for item in wishlist %}
     {% with recipe=item.recipe%}
     <div data-index="{{recipe.id}}" class="row mb-4 border recipe-item">
@@ -66,27 +70,6 @@
     });
   })
 
-   // Update Item
-  {% comment %} $(document).on('click', '.update-button', function (e) {
-    e.preventDefault();
-    var recipeid = $(this).data('index');
-    $.ajax({
-      type: 'POST',
-      url: '{% url "wishlist:wishlist_update" %}',
-      data: {
-        recipeId: $(this).data('index'),
-        csrfmiddlewaretoken: "{{csrf_token}}",
-        action: 'post'
-      },
-      success: function (json) {
-        document.getElementById("wishlist-qty").innerHTML = json.qty
-      },
-      error: function (xhr, errmsg, err) {}
-    });
-  }) {% endcomment %}
 </script>
-
-
- {% comment %} document.getElementById("wishlist-qty").innerHTML = json.qty {% endcomment %}
 
 {% endblock %}
