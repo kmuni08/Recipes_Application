@@ -35,7 +35,7 @@
                 action: 'POST'
             },
             success: function(json) {
-                
+                document.getElementById("wishlist-qty").innerHTML = json.qty
             },
             error: function(xhr, errmsg, err) {}
         });
