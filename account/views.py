@@ -27,8 +27,11 @@ def edit_details(request):
 
         if user_form.is_valid():
             user_form.save()
+            print("user_form is valid", {'user_form': user_form})
     else:
         user_form = UserEditForm(instance=request.user)
+        print("user_form in else", {'user_form': user_form})
+        
 
     return render(request,'account/user/edit_details.html', {'user_form': user_form})
 
