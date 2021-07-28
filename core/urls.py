@@ -22,6 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('recipe.urls', namespace='recipe')),
     path('wishlist/', include('wishlist.urls', namespace='wishlist')),
+    path('account/', include('account.urls', namespace='account')),
 ]
 
 if settings.DEBUG:

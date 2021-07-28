@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
+from django.conf import settings
 
 
 # Create your models here.
@@ -21,7 +22,7 @@ class Category(models.Model):
 
 class Recipe(models.Model):
     category = models.ForeignKey(Category, related_name='recipe', on_delete=models.CASCADE)
-    created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='recipe_creator')
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='recipe_creator')
     title = models.CharField(max_length=255)
     author = models.CharField(max_length=255, default='admin')
     description = models.TextField(blank=True)

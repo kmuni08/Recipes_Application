@@ -1,0 +1,28 @@
+.wishlist-qty{
+    color: #fff;
+    background: #d42114;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 11px;
+    height: 15px;
+    width: 14px;
+    position: absolute;
+    box-sizing: content-box;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 1px;
+    right: 10px;
+}
+
+.wishlist-btn{
+    position: relative;
+}
+
+.wishlist-btn:hover, .wishlist-btn:focus, .wishlist-btn:active, .wishlist-btn.active{
+    color:#d42114;
+    transition-duration: 0.4s;
+    background-color: #fff;
+}
