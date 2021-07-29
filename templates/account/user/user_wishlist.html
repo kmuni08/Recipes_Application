@@ -4,7 +4,9 @@
 {% block content %}
 
 
-<a type="button" role="button" href="{% url "account:wishlist" %}" class="btn btn-outline-secondary border-0 wishlist-btn">
+<main class="pt-3">
+  <div class="container">
+  <a type="button" role="button" href="{% url "account:wishlist" %}" class="btn btn-outline-secondary border-0 wishlist-btn">
       {% with total_qty=wishlist|length %}
       <div id="wishlist-qty" class="wishlist-qty">
         {% if total_qty > 0 %}
@@ -22,9 +24,6 @@
       </div>
     <span class="fs15 fw500">Wishlist</span>
 </a>
-
-<main class="pt-3">
-  <div class="container">
     <div id = "add-wishlist" class="h4">
       {% if wishlist%}
         <h1 class="h5"> Start Cooking one of these recipes! </h1>
@@ -40,31 +39,21 @@
         </div>
     {% endif %}
     {% for recipe in wishlist %}
-    <div data-index="{{recipe.id}}" class="row mb-4 border recipe-item">
-      <div class="col-md-3 col-lg-2 order-md-first bg-light">
-        <img class="img-fluid mx-auto d-block" width="120px" alt="Responsive image" src="{{ recipe.image.url }}">
+  <div data-index="{{recipe.id}}" class="card mb-3 rounded-0">
+    <div class="row g-0">
+      <div class="col-md-2">
+        <img class="img-fluid d-block p-2" width="135px" src="{{ recipe.image.url }}" />
       </div>
-      <div class="col-md-9 col-lg-10 ps-md-3 ps-lg-10">
-        <a href="{{ recipe.get_absolute_url }}" class="text-decoration-none text-reset">
-          <h1 class="h5 pt-2">{{ recipe.title }}</h1>
-        </a>
-        <div class="border">
-          <div class="col border-bottom">
-            <div class="row p-3">
-              {{ recipe.description }}
-            </div>
-          </div>
-          <div class="col">
-            <div class="row p-3">
-              <div class="col-12">
-                <a type="button" class="btn btn-primary fw500 btn-sm" href="{% url 'account:user_wishlist' recipe.id %}">Remove from Wishlist</a>
-
-              </div>
-            </div>
-          </div>
+      <div class="col-md-10">
+        <div class="card-body">
+          <h5 class="card-title">{{recipe.title}}</h5>
+          <p class="card-text">{{recipe.description}}</p>
+          {% comment %} <p class="card-text"><small class="text-muted">{{product.regular_price}}</small></p> {% endcomment %}
+          <a type="button" class="btn btn-primary fw500 btn-sm" href="{% url 'account:user_wishlist' recipe.id %}">Remove from Wishlist</a>
         </div>
       </div>
     </div>
+  </div>
     {% endfor %}
   </div>
 </main>
