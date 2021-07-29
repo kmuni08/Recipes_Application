@@ -38,7 +38,8 @@
                 <a href = "{% url "account:user_wishlist" recipe.id %}"class="btn btn-light mr-5" role="button">Add to Wish List</a>
                 </div>            
                 {% else %}
-                    <a href = "{% url "account:login" %} aria-disabled="true">Login to view Recipe</a>
+                    <a href = "{% url "account:login" %}"class="btn btn-light mr-5" role="button">Login to view Recipe</a>
+
                 {% endif %}
                 </div>
             </div>

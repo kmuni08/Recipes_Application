@@ -18,13 +18,11 @@
                 {% for ingredient in recipe_data.ingredients  %}
                     <li> {{ingredient}} </li>
                 {% endfor %}
-                {% comment %} {{ recipe_data.ingredients}} {% endcomment %}
-                <p>Actual Recipe:</p>
+            </div>
+            <p>Actual Recipe:</p>
                 {% for description in recipe_data.recipe_description  %}
                     <dl> {{description}} </dl>
                 {% endfor %}
-                {% comment %} {{ recipe_data.recipe_description}} {% endcomment %}
-            </div>
         </div>
     </main>
 </div>
