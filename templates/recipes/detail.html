@@ -31,11 +31,11 @@
                 <h1 class="mb-0 h4">{{ recipe.title }}</h1>
                 <p><span class="lead">{{ recipe.author }}</span> (Author)</p>
                 <p>{{ recipe.description|slice:":355" }}...</p>
-                <div class="col-3 text-end">
+                <div class="col-4">
                 {% if user.is_authenticated%}
-                    <a type="button" id = "add-button" href = "{% url "account:user_wishlist" recipe.id %}"class="btn btn-light fw500" role="button" aria-disabled="true">Add to Wish List</a>
+                    <a type="button" id = "add-button" href = "{% url "account:user_wishlist" recipe.id %}"class="btn btn-primary fw500 btn-sm" role="button" aria-disabled="true">Add to Wish List</a>
                 {% else %}
-                    <a type="button" id = "button-login" href = "{% url "account:login" %}"class="btn btn-light fw300" role="button" aria-disabled="true">Login to view Recipe</a>
+                    <a href = "{% url "account:login" %} aria-disabled="true">Login to view Recipe</a>
                 {% endif %}
                 </div>
             </div>
