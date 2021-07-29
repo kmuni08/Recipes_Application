@@ -30,6 +30,7 @@ class Recipe(models.Model):
     slug = models.SlugField(max_length=255)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    users_wishlist = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="user_wishlist", blank=True)
 
     class Meta:
         verbose_name_plural = 'Recipes'

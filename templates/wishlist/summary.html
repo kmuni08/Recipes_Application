@@ -1,4 +1,4 @@
-{% extends "recipe/base.html" %}
+{% comment %} {% extends "recipe/base.html" %}
 {% load static %}
 {% block title %}Wishlist Summary{% endblock %}
 {% block content %}
@@ -32,9 +32,6 @@
           <div class="col">
             <div class="row p-3">
               <div class="col-12">
-                {% comment %} <button type="button" id="update-button" data-index="{{recipe.id}}"
-                  class="btn btn-outline-secondary btn-sm update-button">
-                  Update
                 </button> {% endcomment %}
                 <button type="button" id="delete-button" data-index = "{{recipe.id}}" 
                   class="btn btn-outline-secondary btn-sm delete-button">
@@ -49,9 +46,9 @@
     {% endwith %}
     {% endfor %}
   </div>
-</main>
+</main> {% endcomment %}
 
-<script>
+{% comment %} <script>
   $(document).on('click', '.delete-button', function (e) {
     e.preventDefault();
     var recipeid = $(this).data('index');
@@ -74,6 +71,6 @@
     });
   })
 
-</script>
+</script> {% endcomment %}
 
-{% endblock %}
+{% comment %} {% endblock %}  {% endcomment %}

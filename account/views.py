@@ -1,14 +1,16 @@
+from django.contrib import messages
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.sites.shortcuts import get_current_site
-from django.http import HttpResponse
-from django.shortcuts import redirect, render
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
+from django.http.response import HttpResponseRedirect
+from django.shortcuts import get_object_or_404, redirect, render
 from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 
 # from orders.views import user_orders
-
+from recipe.models import Recipe
 from .forms import RegistrationForm, UserEditForm
 from .models import UserBase
 from .tokens import account_activation_token
@@ -16,8 +18,24 @@ from .tokens import account_activation_token
 
 @login_required
 def dashboard(request):
-    # orders = user_orders(request)
     return render(request, 'account/user/dashboard.html')
+
+@login_required
+def wishlist(request):
+    recipes = Recipe.objects.filter(users_wishlist = request.user)
+    return render(request, 'account/user/user_wishlist.html', {"wishlist": recipes})
+
+@login_required
+def add_to_wishlist(request,id):
+    recipe = get_object_or_404(Recipe, id=id)
+    if recipe.users_wishlist.filter(id=request.user.id).exists():
+        recipe.users_wishlist.remove(request.user)
+        messages.success(request, recipe.title + " has been removed from your WishList. ")
+    else:
+        recipe.users_wishlist.add(request.user)
+        messages.success(request, "Added " + recipe.title + " to your WishList.")
+    return HttpResponseRedirect(request.META["HTTP_REFERER"])
+
 
 
 @login_required
