@@ -32,8 +32,11 @@
                 <p><span class="lead">{{ recipe.author }}</span> (Author)</p>
                 <p>{{ recipe.description|slice:":355" }}...</p>
                 <div class="col-4">
-                {% if user.is_authenticated%}
-                    <a type="button" id = "add-button" href = "{% url "account:user_wishlist" recipe.id %}"class="btn btn-primary fw500 btn-sm" role="button" aria-disabled="true">Add to Wish List</a>
+                {% if user.is_authenticated%}  
+                <div class= "col-xs-4" >
+                <a href = "{% url "recipe:view_recipe" recipe.id %}" class="btn btn-light mr-10 " style="margin-bottom:10px;" role="button">See Recipe</a>
+                <a href = "{% url "account:user_wishlist" recipe.id %}"class="btn btn-light mr-5" role="button">Add to Wish List</a>
+                </div>            
                 {% else %}
                     <a href = "{% url "account:login" %} aria-disabled="true">Login to view Recipe</a>
                 {% endif %}
@@ -42,12 +45,5 @@
         </div>
     </main>
 </div>
-
-{% comment %} <script>
-    $(document).on('click', '#add-button', function(e) {
-        e.preventDefault();
-        document.getElementById("wishlist-qty").innerHTML = json.qty
-    })
-</script>  {% endcomment %}
 
 {% endblock %}

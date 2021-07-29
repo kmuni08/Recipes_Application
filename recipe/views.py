@@ -18,6 +18,14 @@ def recipe_detail(request, slug):
         'recipe': recipe
     })
 
+def view_recipe(request, recipe_slug):
+    # get individual item from db. 
+    print("slug", recipe_slug)
+    recipe = Recipe.objects.get(id = recipe_slug)
+    print("recipe for view recipe", recipe)
+    return render(request, 'recipes/view_recipe.html', {
+        'recipe': recipe, "recipe_data": recipe.recipe_data})
+
 def category_list(request, category_slug):
     category = get_object_or_404(Category, slug=category_slug)
     recipes = Recipe.objects.filter(category = category)

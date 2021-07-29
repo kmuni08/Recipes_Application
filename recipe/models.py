@@ -31,6 +31,7 @@ class Recipe(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     users_wishlist = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="user_wishlist", blank=True)
+    recipe_data = models.JSONField(default=dict)
 
     class Meta:
         verbose_name_plural = 'Recipes'
